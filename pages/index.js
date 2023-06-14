@@ -22,27 +22,53 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <p className="ml-4">recent patients</p>
+        <p className="ml-4 text-lg">Recent Patients</p>
         <div className="flex flex-row justify-center">
           <div className="flex flex-col w-full">
-            <div className="bg-gray-100 rounded-lg p-6 m-4">
-              <p>Patient 1</p>
+            <div className="flex flex-row bg-gray-100 rounded-lg p-6 m-4">
+              <div className="bg-green-200 p-8 rounded-xl">
+
+              </div>
+              <div className="ml-5">
+                <p className="font-bold">Angela Feldman</p>
+                <p className="text-gray-500">Ankle Pathology</p>
+                <p className="text-green-600 text-md">Week 24</p>
+              </div>
             </div>
-            <div className="bg-gray-100 rounded-lg p-6 m-4">
-              <p>Patient 2</p>
+            <div className="flex flex-row bg-gray-100 rounded-lg p-6 m-4">
+              <div className="bg-green-200 p-8 rounded-xl">
+
+              </div>
+              <div className="ml-5">
+                <p className="font-bold">Ryan Davies</p>
+                <p className="text-gray-500">Ankle Pathology</p>
+                <p className="text-green-600 text-md">Week 16</p>
+              </div>
             </div>
           </div>
         </div>
-        <p className="ml-4">Tools</p>
+        <p className="ml-4 text-lg">Tools</p>
         <div className="flex flex-row justify-center">
+
           <div className="bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
-            <p>Create new HEP</p>
+            <a href="">
+              <div className="flex flex-col bg-green-200 p-4 pt-10 rounded-xl">
+
+              </div>
+              <p className="font-bold text-lg text-center mt-8">Create new</p>
+              <p className="font-bold text-lg text-center">HEP</p>
+            </a>
           </div>
-          <div className="bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
-            <p>Your Program Templates</p>
+
+          <div className="flex flex-col bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
+            <div className="bg-orange-200 p-4 pt-10 rounded-xl">
+
+            </div>
+            <p className="font-bold text-lg text-center mt-8">Your Program</p>
+            <p className="font-bold text-lg text-center">Templates</p>
           </div>
         </div>
-        <p className="ml-4">Upcoming Appointments</p>
+        <p className="ml-4 text-lg">Upcoming Appointments</p>
         <div className="flex flex-col w-full">
             <div className="bg-gray-100 rounded-lg p-6 m-4">
               <p>Appointment 1</p>
