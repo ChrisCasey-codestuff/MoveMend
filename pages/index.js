@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-
+import Link  from 'next/link';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -51,21 +51,23 @@ export default function Home() {
         <div className="flex flex-row justify-center">
 
           <div className="bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
-            <a href="">
+            <Link href="/bodyAreas">
               <div className="flex flex-col bg-green-200 p-4 pt-10 rounded-xl">
 
               </div>
               <p className="font-bold text-lg text-center mt-8">Create new</p>
               <p className="font-bold text-lg text-center">HEP</p>
-            </a>
+            </Link>
           </div>
 
           <div className="flex flex-col bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
-            <div className="bg-orange-200 p-4 pt-10 rounded-xl">
+            <Link href="/">
+              <div className="bg-orange-200 p-4 pt-10 rounded-xl">
 
             </div>
             <p className="font-bold text-lg text-center mt-8">Your Program</p>
             <p className="font-bold text-lg text-center">Templates</p>
+            </Link>
           </div>
         </div>
         <p className="ml-4 text-lg">Upcoming Appointments</p>

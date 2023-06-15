@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import Link  from 'next/link';
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Exercises() {
+export default function BodyAreas() {
   return (
     <div className="flex flex-col justify-center mr-2">
       <h1 className="font-bold text-center text-4xl mt-20">New HEP</h1>
@@ -26,21 +26,21 @@ export default function Exercises() {
         <div>
           <Link href="">
             <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2">
-              <p className="text-2xl font-bold">Rows</p>
+              <p className="text-2xl font-bold">Shoulders</p>
             </div>
           </Link>
         </div>
         <div>
           <Link href="">
             <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2">
-              <p className="text-2xl font-bold">Lateral Pulls</p>
+              <p className="text-2xl font-bold">Chest</p>
             </div>
           </Link>
         </div>
         <div>
           <Link href="">
             <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2">
-              <p className="text-2xl font-bold">Pull ups</p>
+              <p className="text-2xl font-bold">Lower back</p>
             </div>
           </Link>
         </div>
