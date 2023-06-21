@@ -2,8 +2,32 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Link  from 'next/link';
 const inter = Inter({ subsets: ['latin'] })
+const axios = require('axios');
+import { useEffect } from 'react'
 
 export default function BodyAreas() {
+
+  let exercises
+
+  function getExercises () {
+    axios.get('http://localhost:3001/exercises')
+    .then(response => {
+      console.log(response.data);
+      exercises = response.data
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
+  useEffect(() => {
+    // Function to call when the component mounts
+    console.log('hello')
+    getExercises();
+
+  }, []);
+
+
   return (
     <div className="flex flex-col justify-center mr-2">
       <h1 className="font-bold text-center text-4xl mt-20">New HEP</h1>
