@@ -4,16 +4,17 @@ import Link  from 'next/link';
 const inter = Inter({ subsets: ['latin'] })
 const axios = require('axios');
 import { useEffect } from 'react'
+import { useState } from 'react';
 
 export default function BodyAreas() {
 
-  let exercises
+  const [exercises, setExercises] = useState([]);
 
   function getExercises () {
     axios.get('http://localhost:3001/exercises')
     .then(response => {
-      console.log(response.data);
-      exercises = response.data
+      //console.log(response.data);
+      setExercises(response.data)
     })
     .catch(error => {
       console.error(error);
@@ -21,8 +22,6 @@ export default function BodyAreas() {
   }
 
   useEffect(() => {
-    // Function to call when the component mounts
-    console.log('hello')
     getExercises();
 
   }, []);
@@ -47,27 +46,15 @@ export default function BodyAreas() {
           </div>
         </div>
       <div className="flex flex-col justify-center mr-2 mt-5">
+        {exercises.map((item) =>
         <div>
           <Link href="">
             <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2">
-              <p className="text-2xl font-bold">Shoulders</p>
+              <p className="text-2xl font-bold">{item.bodyArea}</p>
             </div>
           </Link>
         </div>
-        <div>
-          <Link href="">
-            <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2">
-              <p className="text-2xl font-bold">Chest</p>
-            </div>
-          </Link>
-        </div>
-        <div>
-          <Link href="">
-            <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2">
-              <p className="text-2xl font-bold">Lower back</p>
-            </div>
-          </Link>
-        </div>
+        )}
       </div>
     </div>
     )
