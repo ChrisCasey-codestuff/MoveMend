@@ -9,26 +9,45 @@ import { BsChevronCompactRight } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 
-export default function BodyAreas() {
 
-  const [exercises, setExercises] = useState([]);
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const { bodyArea } = params;
+  // Fetch data for the specific bodyArea
 
+
+  // Return the data as props
+  return {
+    props: {
+      params,
+    },
+  };
+}
+
+
+
+export default function Exercises({params}) {
+
+  let exercises
+  const [areaExercises, setAreaExercises] = useState([]);
   function getExercises () {
-    axios.get('http://localhost:3001/exercises')
+    axios.get('http://localhost:3001/exercises/' + params.bodyArea)
     .then(response => {
       //console.log(response.data);
-      setExercises(response.data)
+      setAreaExercises(response.data)
     })
     .catch(error => {
       console.error(error);
     });
   }
 
+
   useEffect(() => {
+    // Function to call when the component mounts
     getExercises();
 
-  }, []);
 
+  }, []);
 
   return (
     <div className="flex flex-col justify-center mr-2">
@@ -48,12 +67,12 @@ export default function BodyAreas() {
            </span>
           </div>
         </div>
-      <div className="flex flex-col justify-center mr-2 mt-5">
-        {exercises.map((item) =>
+        <div className="flex flex-col justify-center mr-2 mt-5">
+        {areaExercises.map((item) =>
         <div>
           <Link href={"/" + item.bodyArea}>
             <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2 justify-between">
-              <p className="text-2xl font-bold">{item.bodyArea}</p>
+              <p className="text-2xl font-bold">{item.name}</p>
               <BsChevronCompactRight className="text-3xl"/>
 
             </div>

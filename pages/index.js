@@ -3,7 +3,11 @@ import { Inter } from 'next/font/google'
 import Link  from 'next/link';
 const inter = Inter({ subsets: ['latin'] })
 const axios = require('axios');
-
+import { BiUser } from 'react-icons/bi'
+import { BsLightningCharge } from 'react-icons/bs'
+import { AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { TiDeleteOutline } from 'react-icons/ti'
 export default function Home() {
   return (
     <main>
@@ -16,19 +20,19 @@ export default function Home() {
             placeholder="Search..."
           />
            <span className="absolute right-3 top-4">
-             <p>x</p>
+             <TiDeleteOutline className="text-2xl"/>
            </span>
            <span className="absolute left-3 top-4 mr-2">
-             <p>e</p>
-            </span>
+             <AiOutlineSearch className="text-2xl"/>
+           </span>
           </div>
         </div>
         <p className="ml-4 text-lg">Recent Patients</p>
         <div className="flex flex-row justify-center">
           <div className="flex flex-col w-full">
             <div className="flex flex-row bg-gray-100 rounded-lg p-6 m-4">
-              <div className="bg-green-200 p-8 rounded-xl">
-
+              <div className="bg-green-200 p-6 rounded-xl">
+                <BiUser className="text-3xl text-green-500"/>
               </div>
               <div className="ml-5">
                 <p className="font-bold">Angela Feldman</p>
@@ -37,9 +41,9 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-row bg-gray-100 rounded-lg p-6 m-4">
-              <div className="bg-green-200 p-8 rounded-xl">
-
-              </div>
+            <div className="bg-green-200 p-6 rounded-xl">
+                <BiUser className="text-3xl text-green-500"/>
+            </div>
               <div className="ml-5">
                 <p className="font-bold">Ryan Davies</p>
                 <p className="text-gray-500">Ankle Pathology</p>
@@ -53,9 +57,9 @@ export default function Home() {
 
           <div className="bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
             <Link href="/bodyAreas">
-              <div className="flex flex-col bg-green-200 p-4 pt-10 rounded-xl">
-
-              </div>
+            <div className="flex justify-center items-center bg-green-200 p-6 rounded-xl">
+              <AiOutlinePlus className="text-3xl text-green-500"/>
+            </div>
               <p className="font-bold text-lg text-center mt-8">Create new</p>
               <p className="font-bold text-lg text-center">HEP</p>
             </Link>
@@ -63,8 +67,8 @@ export default function Home() {
 
           <div className="flex flex-col bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
             <Link href="/">
-              <div className="bg-orange-200 p-4 pt-10 rounded-xl">
-
+            <div className="flex justify-center items-center bg-orange-200 p-6 rounded-xl">
+              <BsLightningCharge className="text-3xl text-orange-500"/>
             </div>
             <p className="font-bold text-lg text-center mt-8">Your Program</p>
             <p className="font-bold text-lg text-center">Templates</p>
