@@ -111,9 +111,9 @@ export default function Exercises({params}) {
           </div>
         </div>
         <div className="flex flex-col justify-center mr-2 mt-5">
-        {areaExercises.map((item) =>
-        <div>
-          <Link href={"/" + item.bodyArea}>
+        {areaExercises.map((item, index) =>
+        <div key={index}>
+          <Link href={"/exercise/" + item._id}>
             <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2 justify-between">
               <p className="text-2xl font-bold">{item.name}</p>
               <BsChevronCompactRight className="text-3xl"/>
