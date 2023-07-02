@@ -30,6 +30,32 @@ export default function Exercises({params}) {
 
   let exercises
   const [areaExercises, setAreaExercises] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    setSearchQuery(value);
+
+    // Filter the exercise list based on the search query
+    const filteredExercises = areaExercises.filter(
+      (exercise) =>
+        exercise.name.toLowerCase().includes(value.toLowerCase()) ||
+        exercise.bodyArea.toLowerCase().includes(value.toLowerCase()) ||
+        exercise.type.toLowerCase().includes(value.toLowerCase())
+    );
+    if (value === '') {
+      axios.get('http://localhost:3001/exercises/' + params.bodyArea)
+    .then(response => {
+      //console.log(response.data);
+      setAreaExercises(response.data)
+    })
+    .catch(error => {
+      console.error(error);
+    });
+    }
+    setAreaExercises(filteredExercises);
+  };
+
   function getExercises () {
     axios.get('http://localhost:3001/exercises/' + params.bodyArea)
     .then(response => {
@@ -41,6 +67,19 @@ export default function Exercises({params}) {
     });
   }
 
+  const handleSearchClick = (e) => {
+
+
+    // Filter the exercise list based on the search query
+    const filteredExercises = areaExercises.filter(
+      (exercise) =>
+        exercise.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        exercise.bodyArea.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        exercise.type.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setAreaExercises(filteredExercises);
+  };
 
   useEffect(() => {
     // Function to call when the component mounts
@@ -54,17 +93,21 @@ export default function Exercises({params}) {
       <h1 className="font-bold text-center text-4xl mt-20">New HEP</h1>
       <div className="flex flex-row justify-center m-5">
         <div className="relative w-full mt-20">
+          <form>
           <input
             type="text"
+            value={searchQuery}
+            onChange={handleSearch}
             className="px-4 py-2 pr-10 pl-10 w-full border border-gray-300 rounded-lg focus:outline-none drop-shadow-xl h-14 p-6"
             placeholder="Search..."
           />
            <span className="absolute right-3 top-4">
              <TiDeleteOutline className="text-2xl"/>
            </span>
-           <span className="absolute left-3 top-4 mr-2">
+           <button type="submit" className="absolute left-3 top-4 mr-2" onClick={handleSearchClick}>
              <AiOutlineSearch className="text-2xl"/>
-           </span>
+           </button>
+           </form>
           </div>
         </div>
         <div className="flex flex-col justify-center mr-2 mt-5">
