@@ -10,7 +10,7 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 
 export default function BodyAreas() {
-
+  let areas = ["elbow and hand", "hip and knee", "lumbar thoracic"]
   const [exercises, setExercises] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -94,11 +94,11 @@ export default function BodyAreas() {
           </div>
         </div>
       <div className="flex flex-col justify-center mr-2 mt-5">
-        {exercises.map((item) =>
+        {areas.map((item) =>
         <div>
-          <Link href={"/" + item.bodyArea}>
+          <Link href={"/" + item}>
             <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2 justify-between">
-              <p className="text-2xl font-bold">{item.bodyArea}</p>
+              <p className="text-2xl font-bold">{item}</p>
               <BsChevronCompactRight className="text-3xl"/>
 
             </div>

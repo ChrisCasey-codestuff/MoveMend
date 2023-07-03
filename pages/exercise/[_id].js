@@ -18,12 +18,12 @@ export async function getServerSideProps(context) {
 
   // Assuming you are using axios, make the API request
   const response = await axios.get(`http://localhost:3001/exercise/${_id}`);
-  const exercise = response.data;
+  const myExercise = response.data;
 
   // Return the exercise data as props along with the params
   return {
     props: {
-      exercise,
+      myExercise,
       params,
     },
   };
@@ -32,9 +32,16 @@ export async function getServerSideProps(context) {
 
 
 
-export default function ExerciseId({params}) {
+export default function ExerciseId({params, myExercise}) {
 
-  const [exercise, setExercise] = useState([]);
+  const [exercise, setExercise] = useState(myExercise);
+
+  useEffect(() => {
+    // Function to call when the component mounts
+    getExercise();
+    console.log(exercise)
+
+  }, []);
 
   console.log(params)
 
@@ -48,17 +55,12 @@ export default function ExerciseId({params}) {
       });
   }
 
-  useEffect(() => {
-    // Function to call when the component mounts
-    getExercise();
-    console.log(exercise)
 
-  }, []);
 
   return (
     <div className="flex flex-col justify-center items-center mr-2 w-full">
-{console.log(exercise)}
-      <h1></h1>
+
+      <h1>{exercise[0].name}</h1>
 
     </div>
     )
