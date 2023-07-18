@@ -10,8 +10,8 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 
 export default function BodyAreas() {
-  let areas = ["elbow and hand", "hip and knee", "lumbar thoracic"]
   const [exercises, setExercises] = useState([]);
+  const [areas, setAreas] = useState(["elbow and hand", "hip and knee", "lumbar thoracic"]);
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e) => {
@@ -19,28 +19,18 @@ export default function BodyAreas() {
     setSearchQuery(value);
 
     // Filter the exercise list based on the search query
-    const filteredExercises = exercises.filter(
-      (exercise) =>
-        exercise.name.toLowerCase().includes(value.toLowerCase()) ||
-        exercise.bodyArea.toLowerCase().includes(value.toLowerCase()) ||
-        exercise.type.toLowerCase().includes(value.toLowerCase())
+    const filteredAreas = areas.filter(
+      (area) =>
+        area.toLowerCase().includes(value.toLowerCase())
     );
     if (value === '') {
-      axios.get('http://localhost:3001/exercises')
-    .then(response => {
-      //console.log(response.data);
-      setExercises(response.data)
-    })
-    .catch(error => {
-      console.error(error);
-    });
+      setAreas(["elbow and hand", "hip and knee", "lumbar thoracic"])
+      return
     }
-    setExercises(filteredExercises);
+    setAreas(filteredAreas);
   };
 
   const handleSearchClick = (e) => {
-
-
     // Filter the exercise list based on the search query
     const filteredExercises = exercises.filter(
       (exercise) =>
@@ -94,13 +84,12 @@ export default function BodyAreas() {
           </div>
         </div>
       <div className="flex flex-col justify-center mr-2 mt-5">
-        {areas.map((item) =>
-        <div>
+        {areas.map((item, index) =>
+        <div key={index}>
           <Link href={"/" + item}>
             <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2 justify-between">
               <p className="text-2xl font-bold">{item}</p>
               <BsChevronCompactRight className="text-3xl"/>
-
             </div>
           </Link>
         </div>
