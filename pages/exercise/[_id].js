@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { BsChevronCompactRight } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
+import { useMyContext } from '/Users/tomwhiteman/Desktop/movemend/contexts/MyContext.js';
 
 
 export async function getServerSideProps(context) {
@@ -30,7 +31,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function ExerciseId({params, myExercise}) {
-
+  const { hep, setHep } = useMyContext();
   const [exercise, setExercise] = useState(myExercise);
 
   useEffect(() => {
@@ -50,6 +51,8 @@ export default function ExerciseId({params, myExercise}) {
         console.error(error);
       });
   }
+
+
 
   const [resMenuOpen, setResMenuOpen] = useState({
     resOneMenu : false,
@@ -175,7 +178,7 @@ export default function ExerciseId({params, myExercise}) {
 
   function handleSubmit(event) {
     event.preventDefault();
-
+    const newHepState = [...hep]
     const formData = new FormData(event.target);
     const hepData = {};
     console.log(formData)
@@ -194,7 +197,14 @@ export default function ExerciseId({params, myExercise}) {
       week: timeMenuSelect.timeTwoMenuClass.includes("bg-green-200") ? true : false,
       hour: timeMenuSelect.timeThreeMenuClass.includes("bg-green-200") ? true : false,
     };
+    const hepArray = []
+    hepArray.push(hepObject);
+    newHepState.push(hepArray)
+    setHep(newHepState)
+    console.log(hep)
 
+//instead of axios just use state to add to hep object then have separate button send the hep from state to server
+/*
     axios.post('http://localhost:3001/heps', hepObject)
       .then(response => {
         console.log(response.data);
@@ -204,6 +214,7 @@ export default function ExerciseId({params, myExercise}) {
         console.error(error);
         // handle error
       });
+*/
   }
 
   return (
@@ -330,7 +341,7 @@ export default function ExerciseId({params, myExercise}) {
               </button>
             </div>
           </div>
-          <input type="submit" value="Create HEP" className="bg-blue-300 border border-gray-300 p-5 m-5 w-full"/>
+          <input type="submit" value="Add to program +" className="bg-blue-300 border border-gray-300 p-5 m-5 w-full hover:drop-shadow-lg drop-shadow-sm"/>
           </div>
           </form>
         </div>
