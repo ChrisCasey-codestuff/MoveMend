@@ -30,8 +30,13 @@ export async function getServerSideProps(context) {
   };
 }
 
+const initialState = {
+  hep: [],
+};
+
+
 export default function ExerciseId({params, myExercise}) {
-  const { hep, setHep } = useMyContext();
+  const { hep, setHep } = useMyContext(initialState);
   const [exercise, setExercise] = useState(myExercise);
 
   useEffect(() => {
@@ -40,7 +45,7 @@ export default function ExerciseId({params, myExercise}) {
 
   }, []);
 
-  console.log(params)
+  //console.log(params)
 
   function getExercise() {
     axios.get('http://localhost:3001/exercise/' + params._id)
@@ -173,20 +178,21 @@ export default function ExerciseId({params, myExercise}) {
     }
     // Update the state with the new state object
     setResMenuOpen(newState)
-    console.log(resMenuBg)
+    //console.log(resMenuBg)
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    const newHepState = {...hep}
     const formData = new FormData(event.target);
     const hepData = {};
-    console.log(formData)
+
     for (let [key, value] of formData.entries()) {
       hepData[key] = value;
     }
 
     const hepObject = {
+      patientId: "123456789"
+      exercise: exercise.name,
       reps: hepData.reps,
       weight: hepData.weight,
       bands: hepData.bands,
@@ -197,24 +203,14 @@ export default function ExerciseId({params, myExercise}) {
       week: timeMenuSelect.timeTwoMenuClass.includes("bg-green-200") ? true : false,
       hour: timeMenuSelect.timeThreeMenuClass.includes("bg-green-200") ? true : false,
     };
-    const hepArray = []
-    hepArray.push(hepObject);
-    newHepState.hep = hepArray;
-    setHep(newHepState)
-    console.log(hep)
 
-//instead of axios just use state to add to hep object then have separate button send the hep from state to server
-/*
-    axios.post('http://localhost:3001/heps', hepObject)
-      .then(response => {
-        console.log(response.data);
-        // handle success
-      })
-      .catch(error => {
-        console.error(error);
-        // handle error
-      });
-*/
+    // Spread the previous hepArray and add the new hepObject
+    const updatedHepArray = [...hep.hep, hepObject];
+
+    // Update the state with the accumulated hepArray
+    setHep({ ...hep, hep: updatedHepArray });
+
+    console.log(updatedHepArray); // This will show all accumulated objects
   }
 
   return (
