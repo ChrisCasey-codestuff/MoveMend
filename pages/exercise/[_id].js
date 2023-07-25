@@ -178,7 +178,7 @@ export default function ExerciseId({params, myExercise}) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const newHepState = [...hep]
+    const newHepState = {...hep}
     const formData = new FormData(event.target);
     const hepData = {};
     console.log(formData)
@@ -199,7 +199,7 @@ export default function ExerciseId({params, myExercise}) {
     };
     const hepArray = []
     hepArray.push(hepObject);
-    newHepState.push(hepArray)
+    newHepState.hep = hepArray;
     setHep(newHepState)
     console.log(hep)
 

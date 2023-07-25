@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { BsChevronCompactRight } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
-
+import { useMyContext } from '/Users/tomwhiteman/Desktop/movemend/contexts/MyContext.js';
 
 export async function getServerSideProps(context) {
   const { params } = context;
@@ -27,10 +27,23 @@ export async function getServerSideProps(context) {
 
 
 export default function Exercises({params}) {
-
+  const { hep, setHep } = useMyContext();
   let exercises
   const [areaExercises, setAreaExercises] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const createHep = () => {
+    // Assuming the hep data is already held in the 'hep' state variable
+    axios.post('http://localhost:3001/heps', hep)
+      .then((response) => {
+        console.log('HEP created successfully:', response.data);
+        // If you want to update the state context with the newly created hep,
+        // you can do it here using setHep function from useMyContext.
+      })
+      .catch((error) => {
+        console.error('Error creating HEP:', error);
+      });
+  };
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -84,7 +97,7 @@ export default function Exercises({params}) {
   useEffect(() => {
     // Function to call when the component mounts
     getExercises();
-
+    console.log(hep)
 
   }, []);
 
@@ -122,6 +135,9 @@ export default function Exercises({params}) {
           </Link>
         </div>
         )}
+      </div>
+      <div>
+        <button className="w-full m-5 border-2 border-black" onClick={createHep}>Create Hep</button>
       </div>
     </div>
     )

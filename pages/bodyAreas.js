@@ -8,11 +8,30 @@ import { useState } from 'react';
 import { BsChevronCompactRight } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
+import { useMyContext } from '/Users/tomwhiteman/Desktop/movemend/contexts/MyContext.js';
+
 
 export default function BodyAreas() {
+  const { hep, setHep } = useMyContext();
+
   const [exercises, setExercises] = useState([]);
+
   const [areas, setAreas] = useState(["elbow and hand", "hip and knee", "lumbar thoracic"]);
+
   const [searchQuery, setSearchQuery] = useState('');
+
+  const createHep = () => {
+    // Assuming the hep data is already held in the 'hep' state variable
+    axios.post('http://localhost:3001/heps', hep)
+      .then((response) => {
+        console.log('HEP created successfully:', response.data);
+        // If you want to update the state context with the newly created hep,
+        // you can do it here using setHep function from useMyContext.
+      })
+      .catch((error) => {
+        console.error('Error creating HEP:', error);
+      });
+  };
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -61,8 +80,6 @@ export default function BodyAreas() {
 
   return (
     <div className="flex flex-col justify-center mr-2">
-
-
       <h1 className="font-bold text-center text-4xl mt-20">New HEP</h1>
       <div className="flex flex-row justify-center m-5">
         <div className="relative w-full mt-20">
@@ -94,6 +111,9 @@ export default function BodyAreas() {
           </Link>
         </div>
         )}
+      </div>
+      <div>
+      <button className="w-full m-5 border-2 border-black" onClick={createHep}>Create Hep</button>
       </div>
     </div>
     )
