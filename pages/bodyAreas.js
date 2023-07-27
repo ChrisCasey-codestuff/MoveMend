@@ -113,7 +113,9 @@ export default function BodyAreas() {
         )}
       </div>
       <div>
+      <Link href="/confirmHep">
       <button className="w-full m-5 border-2 border-black" onClick={createHep}>Create Hep</button>
+      </Link>
       </div>
     </div>
     )

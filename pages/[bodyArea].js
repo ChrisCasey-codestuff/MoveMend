@@ -137,7 +137,9 @@ export default function Exercises({params}) {
         )}
       </div>
       <div>
-        <button className="w-full m-5 border-2 border-black" onClick={createHep}>Create Hep</button>
+        <Link href="/confirmHep">
+          <button className="w-full m-5 border-2 border-black" onClick={createHep}>Create Hep</button>
+        </Link>
       </div>
     </div>
     )

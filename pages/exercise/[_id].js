@@ -9,7 +9,7 @@ import { BsChevronCompactRight } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { useMyContext } from '/Users/tomwhiteman/Desktop/movemend/contexts/MyContext.js';
-
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
   const { params } = context;
@@ -38,7 +38,7 @@ const initialState = {
 export default function ExerciseId({params, myExercise}) {
   const { hep, setHep } = useMyContext(initialState);
   const [exercise, setExercise] = useState(myExercise);
-
+  const router = useRouter();
   useEffect(() => {
     // Function to call when the component mounts
     getExercise();
@@ -191,8 +191,9 @@ export default function ExerciseId({params, myExercise}) {
     }
 
     const hepObject = {
-      patientId: "123456789"
-      exercise: exercise.name,
+      patientId: "123456789",
+      exerciseId: exercise[0]._id,
+      exerciseName: exercise[0].name,
       reps: hepData.reps,
       weight: hepData.weight,
       bands: hepData.bands,
@@ -210,7 +211,9 @@ export default function ExerciseId({params, myExercise}) {
     // Update the state with the accumulated hepArray
     setHep({ ...hep, hep: updatedHepArray });
 
-    console.log(updatedHepArray); // This will show all accumulated objects
+    console.log(updatedHepArray);
+    router.push('/bodyAreas')
+     // This will show all accumulated objects
   }
 
   return (
