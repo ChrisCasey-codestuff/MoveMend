@@ -34,15 +34,24 @@ const initialState = {
   hep: [],
 };
 
+function updateSessionStorage(updatedHepArray) {
+  sessionStorage.setItem('hepData', JSON.stringify(updatedHepArray));
+}
 
 export default function ExerciseId({params, myExercise}) {
   const { hep, setHep } = useMyContext(initialState);
   const [exercise, setExercise] = useState(myExercise);
   const router = useRouter();
+
   useEffect(() => {
     // Function to call when the component mounts
     getExercise();
 
+    // Get the stored hep data from session storage on component mount
+    const storedHepData = sessionStorage.getItem('hepData');
+    if (storedHepData) {
+      setHep({ ...hep, hep: JSON.parse(storedHepData) });
+    }
   }, []);
 
   //console.log(params)
@@ -210,7 +219,7 @@ export default function ExerciseId({params, myExercise}) {
 
     // Update the state with the accumulated hepArray
     setHep({ ...hep, hep: updatedHepArray });
-
+    updateSessionStorage(updatedHepArray);
     console.log(updatedHepArray);
     router.push('/bodyAreas')
      // This will show all accumulated objects
@@ -240,19 +249,19 @@ export default function ExerciseId({params, myExercise}) {
         <div className="flex flex-col justify-center items-center w-full">
         {resMenuOpen.resTwoMenu && <div className="w-full max-w-sm mx-auto">resTwo
             <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="weight">
-              <option value="0">0</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
+              <option value="0 lbs">0 lbs</option>
+              <option value="5 lbs">5 lbs</option>
+              <option value="10 lbs">10 lbs</option>
+              <option value="20 lbs">20 lbs</option>
             </select>
           </div>
           }
         {resMenuOpen.resThreeMenu && <div className="w-full max-w-sm mx-auto">resThree
             <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="bands" >
-              <option value="0">0</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
+              <option value="very light">very light</option>
+              <option value="light">light</option>
+              <option value="medium">medium</option>
+              <option value="heavy">heavy</option>
             </select>
           </div>
           }
@@ -270,55 +279,55 @@ export default function ExerciseId({params, myExercise}) {
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full">
-          {repMenuOpen.repOneMenu && <div className="w-full max-w-sm mx-auto">reps
-              <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="reps">
-                <option value="0">0</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
+          {repMenuOpen.repOneMenu && <div className="w-full max-w-sm mx-auto">
+              <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="reps" placeholder="Repetitions">
+                <option value="0">2 repetitions</option>
+                <option value="5">5 repetitions</option>
+                <option value="10">10 repetitions</option>
+                <option value="20">20 repetitions</option>
               </select>
             </div>
           }
-        {repMenuOpen.repTwoMenu && <div className="w-full max-w-sm mx-auto">holds
-            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="hold">
-              <option value="0">0</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
+        {repMenuOpen.repTwoMenu && <div className="w-full max-w-sm mx-auto">
+            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="hold" placeholder="Hold">
+              <option value="2 seconds">2 seconds</option>
+              <option value="5 seconds">5 seconds</option>
+              <option value="10 seconds">10 seconds</option>
+              <option value="20 seconds">20 seconds</option>
             </select>
           </div>
           }
-        {repMenuOpen.repThreeMenu && <div className="flex flex-row w-full max-w-sm mx-auto m-5">both
-            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="reps">
-              <option value="0">0</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
+        {repMenuOpen.repThreeMenu && <div className="flex flex-row w-full max-w-sm mx-auto m-5">
+            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="reps" placeholder="Repetitiions">
+              <option value="2 repetitions">2 repetitions</option>
+              <option value="5 repetitions">5 repetitions</option>
+              <option value="10 repetitions">10 repetitions</option>
+              <option value="20 repetitions">20 repetitions</option>
             </select>
-            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="hold">
-              <option value="0">0</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
+            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="hold" placeholder="Hold">
+              <option value="2 seconds">2 seconds</option>
+              <option value="5 seconds">5 seconds</option>
+              <option value="10 seconds">10 seconds</option>
+              <option value="20 seconds">20 seconds</option>
             </select>
           </div>
           }
           <h3>perform</h3>
           <div className="flex flex-row w-full">
-            <div className="w-full max-w-sm mx-auto">sets
-              <select id="setsDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 m-5" name="sets">
-                <option value="0">0</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
+            <div className="w-full max-w-sm mx-auto">
+              <select id="setsDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 m-5" name="sets" placeholder="Sets">
+                <option value="0 sets">0 sets</option>
+                <option value="2 sets">2 sets</option>
+                <option value="4 sets">4 sets</option>
+                <option value="6 sets">6 sets</option>
               </select>
             </div>
-            <div className="w-full max-w-sm mx-auto">Times
-              <select id="timesDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 m-5" name="times">
-                <option value="0">0</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
+            <div className="w-full max-w-sm mx-auto">
+              <select id="timesDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 m-5" name="times" placeholder="Times">
+                <option value="0 times">0 times</option>
+                <option value="1 times">1 times</option>
+                <option value="2 times">2 times</option>
+                <option value="3 times">3 times</option>
               </select>
             </div>
           </div>
