@@ -102,7 +102,7 @@ export default function ExerciseId({params, myExercise}) {
 
    const newState = {...resMenuBg}
    let menu = e.target.name + "MenuClass"
-   newState[menu] = "bg-green-300 border border-r-0 border-gray-300 px-6 py-4 rounded-sm text-xl w-full"
+   newState[menu] = "bg-green-500 border border-r-0 border-gray-300 px-6 py-4 rounded-sm text-xl w-full"
 
    for (let key in newState) {
     if (key !== menu) {
@@ -118,7 +118,7 @@ export default function ExerciseId({params, myExercise}) {
 
     const newState = {...repMenuBg}
     let menu = e.target.name + "MenuClass"
-    newState[menu] = "bg-green-300 border border-r-0 border-gray-300 px-6 py-4 rounded-sm text-xl w-full"
+    newState[menu] = "bg-green-500 border border-r-0 border-gray-300 px-6 py-4 rounded-sm text-xl w-full"
 
     for (let key in newState) {
      if (key !== menu) {
@@ -136,7 +136,7 @@ export default function ExerciseId({params, myExercise}) {
     const menu = e.target.name + "MenuClass";
 
     // Set the selected menu to true and others to false
-    newState[menu] = "bg-green-200 border border-r-0 border-gray-300 px-6 py-4 rounded-sm text-xl w-full";
+    newState[menu] = "bg-green-500 border border-r-0 border-gray-300 px-6 py-4 rounded-sm text-xl w-full";
     for (let key in newState) {
       if (key !== menu) {
         newState[key] = "bg-white border border-r-0 border-gray-300 px-6 py-4 rounded-sm text-xl w-full";
@@ -226,9 +226,10 @@ export default function ExerciseId({params, myExercise}) {
   }
 
   return (
-      <div className="w-full flex flex-col">
-        <div className="flex flex-row justify-start mt-60 ml-5">
-          <h1 className="text-3xl text-bold">{exercise[0].name}</h1>
+      <div className="flex flex-col bg-black w-full sm:w-full">
+        <div className="mt-60 bg-white rounded-lg sm:w-full">
+        <div className="flex flex-row justify-start ml-5">
+          <h1 className="text-3xl text-bold mt-4">{exercise[0].name}</h1>
         </div>
         <div id="form holder">
           <form onSubmit={handleSubmit}>
@@ -247,8 +248,8 @@ export default function ExerciseId({params, myExercise}) {
               </div>
             </div>
         <div className="flex flex-col justify-center items-center w-full">
-        {resMenuOpen.resTwoMenu && <div className="w-full max-w-sm mx-auto">resTwo
-            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="weight">
+        {resMenuOpen.resTwoMenu && <div className="w-full p-4">resTwo
+            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="weight">
               <option value="0 lbs">0 lbs</option>
               <option value="5 lbs">5 lbs</option>
               <option value="10 lbs">10 lbs</option>
@@ -256,8 +257,8 @@ export default function ExerciseId({params, myExercise}) {
             </select>
           </div>
           }
-        {resMenuOpen.resThreeMenu && <div className="w-full max-w-sm mx-auto">resThree
-            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="bands" >
+        {resMenuOpen.resThreeMenu && <div className="w-full p-4">resThree
+            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="bands" >
               <option value="very light">very light</option>
               <option value="light">light</option>
               <option value="medium">medium</option>
@@ -266,7 +267,7 @@ export default function ExerciseId({params, myExercise}) {
           </div>
           }
         </div>
-          <div className="flex flex-row justify-center m-5 pt-20">
+          <div className="flex flex-row justify-center m-5 pt-10">
             <div className="flex flex-col w-1/3 justify-center">
               <button className={repMenuBg.repOneMenuClass} name="repOne" onClick={repHandleClick}>Reps
               </button>
@@ -279,8 +280,8 @@ export default function ExerciseId({params, myExercise}) {
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full">
-          {repMenuOpen.repOneMenu && <div className="w-full max-w-sm mx-auto">
-              <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="reps" placeholder="Repetitions">
+          {repMenuOpen.repOneMenu && <div className="w-full p-4">
+              <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="reps" placeholder="Repetitions">
                 <option value="0">2 repetitions</option>
                 <option value="5">5 repetitions</option>
                 <option value="10">10 repetitions</option>
@@ -288,8 +289,8 @@ export default function ExerciseId({params, myExercise}) {
               </select>
             </div>
           }
-        {repMenuOpen.repTwoMenu && <div className="w-full max-w-sm mx-auto">
-            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="hold" placeholder="Hold">
+        {repMenuOpen.repTwoMenu && <div className="w-full p-4">
+            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="hold" placeholder="Hold">
               <option value="2 seconds">2 seconds</option>
               <option value="5 seconds">5 seconds</option>
               <option value="10 seconds">10 seconds</option>
@@ -297,14 +298,14 @@ export default function ExerciseId({params, myExercise}) {
             </select>
           </div>
           }
-        {repMenuOpen.repThreeMenu && <div className="flex flex-row w-full max-w-sm mx-auto m-5">
-            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="reps" placeholder="Repetitiions">
+        {repMenuOpen.repThreeMenu && <div className="flex flex-row w-full p-4 m-5">
+            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="reps" placeholder="Repetitiions">
               <option value="2 repetitions">2 repetitions</option>
               <option value="5 repetitions">5 repetitions</option>
               <option value="10 repetitions">10 repetitions</option>
               <option value="20 repetitions">20 repetitions</option>
             </select>
-            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="hold" placeholder="Hold">
+            <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500" name="hold" placeholder="Hold">
               <option value="2 seconds">2 seconds</option>
               <option value="5 seconds">5 seconds</option>
               <option value="10 seconds">10 seconds</option>
@@ -312,26 +313,24 @@ export default function ExerciseId({params, myExercise}) {
             </select>
           </div>
           }
-          <h3>perform</h3>
-          <div className="flex flex-row w-full">
-            <div className="w-full max-w-sm mx-auto">
-              <select id="setsDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 m-5" name="sets" placeholder="Sets">
+          <h3 className="text-2xl">Perform</h3>
+          <div className="flex flex-row w-full p-4 m-5">
+              <select id="setsDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 rounded-md leading-tight py-4 px-4 focus:outline-none focus:bg-white focus:border-blue-500 m-5" name="sets" placeholder="Sets">
                 <option value="0 sets">0 sets</option>
                 <option value="2 sets">2 sets</option>
                 <option value="4 sets">4 sets</option>
                 <option value="6 sets">6 sets</option>
               </select>
-            </div>
-            <div className="w-full max-w-sm mx-auto">
-              <select id="timesDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 m-5" name="times" placeholder="Times">
+
+              <select id="timesDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 rounded-md leading-tight py-4 px-4 focus:outline-none focus:bg-white focus:border-blue-500 m-5" name="times" placeholder="Times">
                 <option value="0 times">0 times</option>
                 <option value="1 times">1 times</option>
                 <option value="2 times">2 times</option>
                 <option value="3 times">3 times</option>
               </select>
-            </div>
+
           </div>
-          <h3>Every</h3>
+          <h3 className="text-2xl">Every</h3>
           <div className="flex flex-row justify-center m-5 mt-10 w-full">
             <div className="flex flex-col w-1/3 justify-center">
               <button className={timeMenuSelect.timeOneMenuClass} name="timeOne" onClick={altHandleClick}>Day
@@ -352,6 +351,7 @@ export default function ExerciseId({params, myExercise}) {
           <input type="submit" value="Add to program +" className="bg-blue-300 border border-gray-300 p-5 m-5 w-full hover:drop-shadow-lg drop-shadow-sm"/>
           </div>
           </form>
+        </div>
         </div>
       </div>
     )

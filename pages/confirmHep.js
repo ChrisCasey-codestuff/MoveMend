@@ -52,18 +52,25 @@ export default function confirmHep() {
      <div>
       {hep.hep.map((item, index) =>
       <div key={index} className="flex flex-row justify-center items-center">
-      <div className="text-2xl border-2 border-black p-6 rounded-md"> {item.exerciseName}
-        <div className="text-2xl">{item.patientId}</div>
+      <div className="text-2xl border-2 border-black p-6 rounded-md">Exercise: {item.exerciseName}
+        <div className="text-2xl">Patient Id:{item.patientId}</div>
         <div className="text-2xl">{item.reps}</div>
         <div className="text-2xl">{item.weight}</div>
         <div className="text-2xl">{item.bands}</div>
-        <div className="text-2xl">{item.hold}</div>
+        <div className="text-2xl">Hold: {item.hold}</div>
+        <div className="text-2xl">{item.sets}</div>
+        <div className="text-2xl">{item.times}</div>
+        <div className="text-2xl">{item.day}</div>
+        <div className="text-2xl">{item.week}</div>
+        <div className="text-2xl">{item.hour}</div>
       </div>
       </div>
       )}
+      <div className="flex flex-row justify-center">
       <Link href="/index">
-      <input type="submit" value="Create Hep" onClick={createHep}/>
+      <input type="submit" value="Create Hep" onClick={createHep} className="text-2xl bg-blue-300 rounded-lg p-6"/>
       </Link>
+      </div>
      </div>
     </main>
   )
