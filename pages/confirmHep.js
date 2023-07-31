@@ -52,25 +52,26 @@ export default function confirmHep() {
      <div>
       {hep.hep.map((item, index) =>
       <div key={index} className="flex flex-row justify-center items-center">
-      <div className="text-2xl border-2 border-black p-6 rounded-md">Exercise: {item.exerciseName}
-        <div className="text-2xl">Patient Id:{item.patientId}</div>
-        <div className="text-2xl">{item.reps}</div>
-        <div className="text-2xl">{item.weight}</div>
-        <div className="text-2xl">{item.bands}</div>
-        <div className="text-2xl">Hold: {item.hold}</div>
-        <div className="text-2xl">{item.sets}</div>
-        <div className="text-2xl">{item.times}</div>
-        <div className="text-2xl">{item.day}</div>
-        <div className="text-2xl">{item.week}</div>
-        <div className="text-2xl">{item.hour}</div>
+      <div className="border-2 border-gray-400 p-6 w-full m-5 border-l-0 border-r-0">
+        <div className="font-semibold text-2xl"> {item.exerciseName}</div>
+        <div className="text-xl">Patient Id: {item.patientId}</div>
+        <div className="text-xl">{item.reps}</div>
+        <div className="text-xl">{item.weight}</div>
+        <div className="text-xl">{item.bands}</div>
+        <div className="text-xl">{item.hold}</div>
+        <div className="text-xl">{item.sets}</div>
+        <div className="text-xl">{item.times}</div>
+        <div className="text-xl">{item.day}</div>
+        <div className="text-xl">{item.week}</div>
+        <div className="text-xl">{item.hour}</div>
       </div>
       </div>
       )}
-      <div className="flex flex-row justify-center">
-      <Link href="/index">
-      <input type="submit" value="Create Hep" onClick={createHep} className="text-2xl bg-blue-300 rounded-lg p-6"/>
+
+      <Link href="/" className="flex flex-row justify-center w-full">
+      <input type="submit" value="Add to Patient" onClick={createHep} className="w-full text-2xl bg-green-500 rounded-lg text-white p-6 m-5 drop-shadow-xl"/>
       </Link>
-      </div>
+
      </div>
     </main>
   )

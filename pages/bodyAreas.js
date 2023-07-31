@@ -104,7 +104,7 @@ export default function BodyAreas() {
         {areas.map((item, index) =>
         <div key={index}>
           <Link href={"/" + item}>
-            <div className="flex flex-row bg-gray-200 rounded-lg p-7 w-full m-2 justify-between">
+            <div className="flex flex-row bg-gray-100 rounded-lg p-9 w-full m-2 justify-between">
               <p className="text-2xl font-bold">{item}</p>
               <BsChevronCompactRight className="text-3xl"/>
             </div>
@@ -114,7 +114,7 @@ export default function BodyAreas() {
       </div>
       <div>
       <Link href="/confirmHep">
-        <button className="w-full m-5 border-2 border-black">Review Hep</button>
+        <button className="w-full text-xl m-5 bg-green-500 text-white p-4 rounded-lg drop-shadow-xl">Review Hep</button>
       </Link>
       </div>
     </div>
