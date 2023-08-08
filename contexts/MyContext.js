@@ -12,8 +12,9 @@ export const useMyContext = () => {
 export const MyContextProvider = ({ children }) => {
   const [sharedState, setSharedState] = useState(/* Your initial state here */);
   const [hep, setHep] = useState({hep: []})
+  const [user, setUser] = useState(null)
   return (
-    <MyContext.Provider value={{ hep, setHep }}>
+    <MyContext.Provider value={{ hep, setHep, user, setUser }}>
       {children}
     </MyContext.Provider>
   );
