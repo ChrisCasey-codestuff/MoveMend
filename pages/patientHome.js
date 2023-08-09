@@ -22,20 +22,21 @@ export default function Home() {
   const { user, setUser } = useMyContext();
 
   useEffect (() => {
-    auth.onAuthStateChanged(user => setUser(user));
-    if (user !== null) {
-      router.push('/')
-    }
-  }, [user])
+
+  }, [])
+
 
   return (
     <main>
-      <div className="flex flex-row justify-end mr-5 font-semibold text-xl">
+      <div className="flex flex-row justify-center">
+        <h1 className="text-2xl font-semibold m-5">All Exercises</h1>
+        <div className="flex flex-row justify-end mr-5 font-semibold text-xl">
         {user === null ? <button onClick={login} className="cursor-pointer m-5">Login</button> : <button onClick={logout} className="cursor-pointer m-5">Logout</button>}
+
+        </div>
       </div>
-      <div className="flex flex-row justify-center m-5">
-        <p className="text-2xl">Hello! Welcome to MoveMend! Login to view your dashboard.</p>
-      </div>
+
+
     </main>
   )
 }

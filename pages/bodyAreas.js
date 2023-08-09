@@ -81,7 +81,7 @@ export default function BodyAreas() {
   return (
     <div className="flex flex-col justify-center mr-2">
       <h1 className="font-bold text-center text-4xl mt-20">New HEP</h1>
-      <div className="flex flex-row justify-center m-5">
+      <div className="flex flex-row justify-center m-5 ml-8">
         <div className="relative w-full mt-20">
           <form>
           <input
@@ -100,7 +100,7 @@ export default function BodyAreas() {
            </form>
           </div>
         </div>
-      <div className="flex flex-col justify-center mr-2 mt-5">
+      <div className="flex flex-col justify-center mr-2 mt-5 ml-2">
         {areas.map((item, index) =>
         <div key={index}>
           <Link href={"/" + item}>

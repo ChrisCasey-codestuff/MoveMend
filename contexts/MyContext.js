@@ -11,10 +11,14 @@ export const useMyContext = () => {
 // Create the context provider component
 export const MyContextProvider = ({ children }) => {
   const [sharedState, setSharedState] = useState(/* Your initial state here */);
+  const [userData, setUserData] = useState();
+  const [patients, setPatients] = useState(null);
+  //add patient here
+  const [ therapistData, setTherapistData ] = useState();
   const [hep, setHep] = useState({hep: []})
   const [user, setUser] = useState(null)
   return (
-    <MyContext.Provider value={{ hep, setHep, user, setUser }}>
+    <MyContext.Provider value={{ hep, setHep, user, setUser, patients, setPatients, userData, setUserData, therapistData, setTherapistData }}>
       {children}
     </MyContext.Provider>
   );

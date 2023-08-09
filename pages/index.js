@@ -10,31 +10,73 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import {login, logout } from "../src/firebase.js"
+import { useEffect, useState } from "react";
+import { login, logout } from "../src/firebase.js"
 import { useMyContext } from '/Users/tomwhiteman/Desktop/movemend/contexts/MyContext.js';
 import { auth } from '../src/firebase.js'
+
+
 const mongoURL = process.env.DATABASE_URL;
 
 export default function Home() {
-  console.log(mongoURL)
-  const { data: session, status } = useSession();
+
+
   const router = useRouter();
   const { user, setUser } = useMyContext();
+  const { userData, setUserData } = useMyContext();
 
-
+  function updateUserSessionStorage(userData) {
+    sessionStorage.setItem('userData', JSON.stringify(userData));
+  }
 
   useEffect (() => {
     auth.onAuthStateChanged(user => setUser(user));
+
     if (user === null) {
       router.push('/home')
+      return
     }
+
+    let userId = user.uid
+
+    console.log(user)
+    //check if users first time
+    axios.get('http://localhost:3001/therapistUsers/' + userId)
+      .then(response => {
+
+        // Handle successful response
+        if (response.data.length === 0) {
+          axios.get('http://localhost:3001/patientUsers/' + userId)
+          .then(response => {
+            console.log(userId)
+            if (response.data.length === 0) {
+              router.push('/createProfile')
+              return
+            } else {
+              setUserData(response.data);
+              updateUserSessionStorage(response.data);
+              router.push('/patientHome')
+              return
+            }
+          })
+        } else {
+          setUserData(response.data);
+          updateUserSessionStorage(response.data);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+    //?separte therapist user routes?
+    //if so redirect to role choice page
+    //on role choise page, if they select patient have therapist select dropdown appear
+    //get therapist add id to patient,
   }, [user])
 
   return (
     <main>
       <div className="flex flex-col">
-        <div>
+        <div className="flex flex-row justify-end mr-5 font-semibold text-xl">
         {user === null ? <button onClick={login} className="cursor-pointer m-5">Login</button> : <button onClick={logout} className="cursor-pointer m-5">Logout</button>}
 
         </div>
@@ -81,7 +123,7 @@ export default function Home() {
         <p className="ml-4 text-lg">Tools</p>
         <div className="flex flex-row justify-center">
 
-          <div className="bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
+          <div className="bg-gray-100 p-8 m-4 w-1/2 rounded-lg">
             <Link href="/bodyAreas">
             <div className="flex justify-center items-center bg-green-200 p-6 rounded-xl">
               <AiOutlinePlus className="text-3xl text-green-500"/>
@@ -91,7 +133,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="flex flex-col bg-gray-100 p-10 m-4 w-1/2 rounded-lg">
+          <div className="flex flex-col bg-gray-100 p-8 m-4 w-1/2 rounded-lg">
             <Link href="/">
             <div className="flex justify-center items-center bg-orange-200 p-6 rounded-xl">
               <BsLightningCharge className="text-3xl text-orange-500"/>
