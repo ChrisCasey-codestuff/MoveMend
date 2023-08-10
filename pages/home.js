@@ -24,6 +24,7 @@ export default function Home() {
   useEffect (() => {
     auth.onAuthStateChanged(user => setUser(user));
     if (user !== null) {
+
       router.push('/')
     }
   }, [user])

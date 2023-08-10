@@ -38,7 +38,7 @@ export default function Home() {
     auth.onAuthStateChanged(user => setUser(user));
 
     const storedPatientHeps = sessionStorage.getItem('patientHeps');
-
+    getHeps(userData[0].name);
     if (storedPatientHeps == 'undefined') {
       getHeps(userData[0].name);
     } else {
@@ -56,16 +56,35 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Render patientHeps */}
+
       {patientHeps ? patientHeps.map((item, index) => {
         const thisHep = item.hep[0]
 
 
         if (thisHep != undefined) {
           return(
-          <div key={index}>
-            <p>{thisHep.exerciseName}</p>
-          </div>)
+            <div key={index} className="w-full">
+      <div className="border-2 border-gray-400 p-6 border-l-0 border-r-0 border-t-0 mr-6 ml-6">
+        <div className="font-semibold text-2xl mb-4"> {thisHep.exerciseName}</div>
+        <div className="flex flex-row">
+          {thisHep.reps == undefined ? <div></div> :
+        <div className="text-md text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{thisHep.reps}</div>
+         }
+         {thisHep.weight == undefined ? <div></div> :
+        <div className="text-md text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{thisHep.weight}</div>
+         }
+        {thisHep.bands == undefined ? <div></div> :
+        <div className="text-md text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{thisHep.bands}</div>
+         }
+        {thisHep.sets == undefined ? <div></div> :
+        <div className="text-md text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{thisHep.sets}</div>
+         }
+        {thisHep.times == undefined ? <div></div> :
+        <div className="text-md text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{thisHep.times}</div>
+         }
+        </div>
+      </div>
+      </div>)
         } else {
           <p>loading</p>
         }

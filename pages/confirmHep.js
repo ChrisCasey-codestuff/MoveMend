@@ -80,32 +80,42 @@ export default function confirmHep() {
     getUserFromSessionStorage();
     console.log(myUserData[0][0].name)
     getPatients(myUserData[0][0].name);
-
+    updateHepFromSessionStorage();
   }, [user]);
    //!!!!! make sure hep is reset in session storage upon creation!!!!!
 
   return (
     <main>
-     <div>
+     <div className="w-full flex flex-col items-center">
+      <h2 className="text-3xl mt-5">Confirm Hep</h2>
       {hep.hep.map((item, index) =>
-      <div key={index} className="flex flex-row justify-center items-center">
-      <div className="border-2 border-gray-400 p-6 w-full m-5 border-l-0 border-r-0">
-        <div className="font-semibold text-2xl"> {item.exerciseName}</div>
-        <div className="text-xl">Patient Id: {item.patientId}</div>
-        <div className="text-xl">{item.reps}</div>
-        <div className="text-xl">{item.weight}</div>
-        <div className="text-xl">{item.bands}</div>
-        <div className="text-xl">{item.hold}</div>
-        <div className="text-xl">{item.sets}</div>
-        <div className="text-xl">{item.times}</div>
-        <div className="text-xl">{item.day}</div>
-        <div className="text-xl">{item.week}</div>
-        <div className="text-xl">{item.hour}</div>
+      <div key={index} className="w-full">
+      <div className="border-2 border-gray-400 p-6 border-l-0 border-r-0 border-t-0 mr-6 ml-6">
+        <div className="font-semibold text-2xl mb-4"> {item.exerciseName}</div>
+        <div className="flex flex-row">
+          {item.reps == undefined ? <div></div> :
+        <div className="text-sm text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{item.reps}</div>
+         }
+         {item.weight == undefined ? <div></div> :
+        <div className="text-sm text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{item.weight}</div>
+         }
+        {item.bands == undefined ? <div></div> :
+        <div className="text-sm text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{item.bands}</div>
+         }
+        {item.sets == undefined ? <div></div> :
+        <div className="text-sm text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{item.sets}</div>
+         }
+        {item.times == undefined ? <div></div> :
+        <div className="text-sm text-orange-400 bg-orange-200 p-2 rounded-xl mr-1 ml-1">{item.times}</div>
+         }
+        </div>
       </div>
       </div>
+
+
       )}
       <div className="flex flex-col items-center">
-      <p className="text-3xl">Select Patient</p>
+      <p className="text-xl mt-5">Select Patient</p>
 
 
         <form onSubmit={(event) => createHep(event)}>

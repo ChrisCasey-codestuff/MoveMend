@@ -282,10 +282,10 @@ export default function ExerciseId({params, myExercise}) {
           <div className="flex flex-col justify-center items-center w-full">
           {repMenuOpen.repOneMenu && <div className="w-full p-4">
               <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-xl" name="reps" placeholder="Repetitions">
-                <option value="0 repetitions">2 repetitions</option>
-                <option value="5 repetitions">5 repetitions</option>
-                <option value="10 repetitions">10 repetitions</option>
-                <option value="20 repetitions">20 repetitions</option>
+                <option value="0 reps">2 repetitions</option>
+                <option value="5 reps">5 repetitions</option>
+                <option value="10 reps">10 repetitions</option>
+                <option value="20 reps">20 repetitions</option>
               </select>
             </div>
           }
@@ -300,10 +300,10 @@ export default function ExerciseId({params, myExercise}) {
           }
         {repMenuOpen.repThreeMenu && <div className="flex flex-row w-full p-4 m-5">
             <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-xl m-2" name="reps" placeholder="Repetitiions">
-              <option value="2 repetitions">2 repetitions</option>
-              <option value="5 repetitions">5 repetitions</option>
-              <option value="10 repetitions">10 repetitions</option>
-              <option value="20 repetitions">20 repetitions</option>
+              <option value="2 reps">2 repetitions</option>
+              <option value="5 reps">5 repetitions</option>
+              <option value="10 reps">10 repetitions</option>
+              <option value="20 reps">20 repetitions</option>
             </select>
             <select id="myDropdown" className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-4 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-xl m-2" name="hold" placeholder="Hold">
               <option value="2 seconds">2 seconds</option>
