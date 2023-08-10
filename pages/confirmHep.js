@@ -22,7 +22,7 @@ export default function confirmHep() {
   const [ therapistId, setTherapistId ] = useState();
   const { userData, setUserData } = useMyContext();
   //get therapistId
-
+  const myUserData = []
   function updateHepFromSessionStorage() {
     const storedHepData = sessionStorage.getItem('hepData');
     if (storedHepData) {
@@ -31,10 +31,11 @@ export default function confirmHep() {
   }
 
   function getUserFromSessionStorage() {
-    const storedUserData = sessionStorage.getItem('userData');
-    console.log(storedUserData)
-    setUserData(storedUserData)
-    console.log(userData)
+    let storedUserData = sessionStorage.getItem('userData');
+    storedUserData = JSON.parse(storedUserData)
+    myUserData.push(storedUserData)
+    console.log(setUserData(storedUserData))
+    console.log(myUserData)
   }
 
   async function getPatients(therapistName) {
@@ -49,9 +50,12 @@ export default function confirmHep() {
     }
   }
   //get all therapist patients
-  const createHep = () => {
+  const createHep = (event) => {
+    event.preventDefault()
+    console.log(event.target.patientSelect.value)
+    const selectedPatient = event.target.patientSelect.value;
     // Assuming the hep data is already held in the 'hep' state variable
-    axios.post('http://localhost:3001/heps', hep)
+    axios.post('http://localhost:3001/heps', { ...hep, patient: selectedPatient })
       .then((response) => {
         console.log('HEP created successfully:', response.data);
         //''
@@ -61,7 +65,7 @@ export default function confirmHep() {
         setHep({ hep: [] });
         sessionStorage.removeItem('hepData');
         // you can do it here using setHep function from useMyContext.
-
+        router.push('/')
       })
       .catch((error) => {
         console.error('Error creating HEP:', error);
@@ -74,9 +78,10 @@ export default function confirmHep() {
 
   useEffect(() => {
     getUserFromSessionStorage();
-    console.log(userData[0].name)
-    getPatients(userData[0].name);
-  }, [user, userData]);
+    console.log(myUserData[0][0].name)
+    getPatients(myUserData[0][0].name);
+
+  }, [user]);
    //!!!!! make sure hep is reset in session storage upon creation!!!!!
 
   return (
@@ -99,10 +104,27 @@ export default function confirmHep() {
       </div>
       </div>
       )}
+      <div className="flex flex-col items-center">
+      <p className="text-3xl">Select Patient</p>
 
-      <Link href="/" className="flex flex-row justify-center w-full">
-      <input type="submit" value="Add to Patient" onClick={createHep} className="w-full text-2xl bg-green-500 rounded-lg text-white p-6 m-5 drop-shadow-xl"/>
-      </Link>
+
+        <form onSubmit={(event) => createHep(event)}>
+        <div className="flex flex-row justify-center">
+          <select className="text-3xl p-4" id="patientSelect">
+            {patients.map((patient, index) => (
+              <option key={index} value={patient.name}>
+                {patient.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex flex-row justify-center w-full">
+        <input type="submit" value="add to patient" className="w-full text-2xl bg-green-500 rounded-lg text-white p-6 m-5 drop-shadow-xl"/>
+        </div>
+        </form>
+
+      </div>
+
 
      </div>
     </main>
