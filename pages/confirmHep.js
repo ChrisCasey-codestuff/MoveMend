@@ -8,7 +8,7 @@ import { BsLightningCharge } from 'react-icons/bs'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
-import { useMyContext } from '/Users/tomwhiteman/Desktop/movemend/contexts/MyContext.js';
+import { useMyContext } from '../contexts/MyContext.js';
 import { useEffect, useState} from 'react';
 import { useRouter } from 'next/router';
 import { auth } from '../src/firebase.js'

@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import {login, logout } from "../src/firebase.js"
-import { useMyContext } from '/Users/tomwhiteman/Desktop/movemend/contexts/MyContext.js';
+import { useMyContext } from '../contexts/MyContext.js';
 import { auth } from '../src/firebase.js'
 const mongoURL = process.env.DATABASE_URL;
 

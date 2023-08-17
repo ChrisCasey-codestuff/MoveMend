@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { BsChevronCompactRight } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
-import { useMyContext } from '/Users/tomwhiteman/Desktop/movemend/contexts/MyContext.js';
+import { useMyContext } from '../contexts/MyContext.js';
 
 
 export default function BodyAreas() {
