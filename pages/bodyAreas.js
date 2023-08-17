@@ -22,7 +22,7 @@ export default function BodyAreas() {
 
   const createHep = () => {
     // Assuming the hep data is already held in the 'hep' state variable
-    axios.post('http://localhost:3001/heps', hep)
+    axios.post('https://move-back-4c06dfb415c7.herokuapp.com/heps', hep)
       .then((response) => {
         console.log('HEP created successfully:', response.data);
         // If you want to update the state context with the newly created hep,
@@ -62,7 +62,7 @@ export default function BodyAreas() {
   };
 
   function getExercises () {
-    axios.get('http://localhost:3001/exercises')
+    axios.get('https://move-back-4c06dfb415c7.herokuapp.com/exercises')
     .then(response => {
       //console.log(response.data);
       setExercises(response.data)

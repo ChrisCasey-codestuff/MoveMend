@@ -41,12 +41,12 @@ export default function Home() {
 
     console.log(user)
     //check if users first time
-    axios.get('http://localhost:3001/therapistUsers/' + userId)
+    axios.get('https://move-back-4c06dfb415c7.herokuapp.com/therapistUsers/' + userId)
       .then(response => {
 
         // Handle successful response
         if (response.data.length === 0) {
-          axios.get('http://localhost:3001/patientUsers/' + userId)
+          axios.get('https://move-back-4c06dfb415c7.herokuapp.com/patientUsers/' + userId)
           .then(response => {
             console.log(userId)
             if (response.data.length === 0) {

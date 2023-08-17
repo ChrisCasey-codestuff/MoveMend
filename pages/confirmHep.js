@@ -40,7 +40,7 @@ export default function confirmHep() {
 
   async function getPatients(therapistName) {
     try {
-      const response = await axios.get(`http://localhost:3001/therapistPatients/${therapistName}`);
+      const response = await axios.get(`https://move-back-4c06dfb415c7.herokuapp.com/therapistPatients/${therapistName}`);
       console.log(therapistName)
       setPatients(response.data);
       console.log(response.data); // Assuming the response contains an array of patient data
@@ -55,7 +55,7 @@ export default function confirmHep() {
     console.log(event.target.patientSelect.value)
     const selectedPatient = event.target.patientSelect.value;
     // Assuming the hep data is already held in the 'hep' state variable
-    axios.post('http://localhost:3001/heps', { ...hep, patient: selectedPatient })
+    axios.post('https://move-back-4c06dfb415c7.herokuapp.com/heps', { ...hep, patient: selectedPatient })
       .then((response) => {
         console.log('HEP created successfully:', response.data);
         //''

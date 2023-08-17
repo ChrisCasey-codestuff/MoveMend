@@ -28,7 +28,7 @@ export default function CreateProfile() {
     // Fetch therapist data and update therapists state
     const fetchTherapists = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/therapistUsers`);
+        const response = await axios.get(`https://move-back-4c06dfb415c7.herokuapp.com/therapistUsers`);
         setTherapists(response.data);
       } catch (error) {
         console.error("Error fetching therapists:", error);
@@ -66,7 +66,7 @@ export default function CreateProfile() {
     //if selection
    if (selection === 'patient') {
     try {
-      const response = await axios.post('http://localhost:3001/patientUsers', data);
+      const response = await axios.post('https://move-back-4c06dfb415c7.herokuapp.com/patientUsers', data);
       console.log('POST request successful', response);
       router.push('/patientHome')
       // Redirect or perform any other actions as needed
@@ -76,7 +76,7 @@ export default function CreateProfile() {
    } else {
 
     try {
-      const response = await axios.post('http://localhost:3001/therapistUsers', data);
+      const response = await axios.post('https://move-back-4c06dfb415c7.herokuapp.com/therapistUsers', data);
       console.log('POST request successful', response);
       router.push('/')
       // Redirect or perform any other actions as needed

@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
   // Fetch data for the specific exercise using _id
 
   // Assuming you are using axios, make the API request
-  const response = await axios.get(`http://localhost:3001/exercise/${_id}`);
+  const response = await axios.get(`https://move-back-4c06dfb415c7.herokuapp.com/${_id}`);
   const myExercise = response.data;
 
   // Return the exercise data as props along with the params
@@ -57,7 +57,7 @@ export default function ExerciseId({params, myExercise}) {
   //console.log(params)
 
   function getExercise() {
-    axios.get('http://localhost:3001/exercise/' + params._id)
+    axios.get('https://move-back-4c06dfb415c7.herokuapp.com/exercise/' + params._id)
       .then(response => {
         setExercise(response.data);
       })

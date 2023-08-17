@@ -34,7 +34,7 @@ export default function Exercises({params}) {
 
   const createHep = () => {
     // Assuming the hep data is already held in the 'hep' state variable
-    axios.post('http://localhost:3001/heps', hep)
+    axios.post('https://move-back-4c06dfb415c7.herokuapp.com/heps', hep)
       .then((response) => {
         console.log('HEP created successfully:', response.data);
         // If you want to update the state context with the newly created hep,
@@ -57,7 +57,7 @@ export default function Exercises({params}) {
         exercise.type.toLowerCase().includes(value.toLowerCase())
     );
     if (value === '') {
-      axios.get('http://localhost:3001/exercises/' + params.bodyArea)
+      axios.get('https://move-back-4c06dfb415c7.herokuapp.com/exercises/' + params.bodyArea)
     .then(response => {
       //console.log(response.data);
       setAreaExercises(response.data)
@@ -70,7 +70,7 @@ export default function Exercises({params}) {
   };
 
   function getExercises () {
-    axios.get('http://localhost:3001/exercises/' + params.bodyArea)
+    axios.get('https://move-back-4c06dfb415c7.herokuapp.com/exercises/' + params.bodyArea)
     .then(response => {
       //console.log(response.data);
       setAreaExercises(response.data)

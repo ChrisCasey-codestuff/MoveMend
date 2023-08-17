@@ -15,7 +15,7 @@ export default function Home() {
 
   async function getHeps(patientName) {
     try {
-      const response = await axios.get(`http://localhost:3001/heps/${patientName}`);
+      const response = await axios.get(`https://move-back-4c06dfb415c7.herokuapp.com/heps/${patientName}`);
       setPatientHeps(response.data);
       // Assuming the response contains an array of HEP data
     } catch (error) {
