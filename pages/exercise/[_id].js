@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { BsChevronCompactRight } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
-import { useMyContext } from '.../contexts/MyContext.js';
+import { useMyContext } from '../../contexts/MyContext';
 import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
   // Fetch data for the specific exercise using _id
 
   // Assuming you are using axios, make the API request
-  const response = await axios.get(`https://move-back-4c06dfb415c7.herokuapp.com/${_id}`);
+  const response = await axios.get(`https://move-back-4c06dfb415c7.herokuapp.com/exercise/${_id}`);
   const myExercise = response.data;
 
   // Return the exercise data as props along with the params
