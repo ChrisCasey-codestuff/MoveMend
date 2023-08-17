@@ -114,7 +114,7 @@ export default function BodyAreas() {
       </div>
       <div>
       <Link href="/confirmHep">
-        <button className=" w-full text-xl m-5 bg-green-500 text-white p-4 rounded-lg drop-shadow-xl">Review Hep</button>
+        <button className="w-full text-xl m-5 bg-green-500 text-white p-4 rounded-lg drop-shadow-xl">Review Hep</button>
       </Link>
       </div>
     </div>
